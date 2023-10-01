@@ -1,0 +1,46 @@
+# Syntax is RPN
+# identifiers start with lowercase
+# Operators start with caps, or symbols
+
+# Define a "flow" of 4 points
+square ( s 4 Point ) Flow      # s is 4 points (polar) at origin
+p Point Decl                    # p is a Point
+s p 45 i * / 4 i Each =           # / means rotate, Assign s[i] to p rotated by i * 45 degrees. Each is an operator to loop
+s s 20 + =                   # + means add to points distance
+EndFlow
+
+
+# Every Flow is a set of data that gets transformed
+# Flows are compiled to a pair of values for each parameter
+# Animations can be done by modulating these values as a function of t in any fashion
+
+1024 width 1024 width red stroke 4 stroke-width Canvas  # Create a canvas
+s square Draw       # Draw the s of square on the canvas
+
+
+
+
+#s Stroke   # draw it
+
+
+# Animate s in 1 second
+#s Animate Second 1 Linear               # Animate all properties in 1 second (both distance and angle of the Points together)
+
+#s Animate Second 1 Linear Dist          # Animate only the distance
+#s Animate Second 1 Linear Dist          # Animate only the angle
+
+# Animate the reverse way
+#s Animate Second 1 Linear Dist
+#s Animate Second 1 Linear Dist
+
+
+
+# Get another square, shift origin by 20
+s2 square
+s2 20 +
+
+# Concatenate s and s2 into a new combined flow
+s3 s s2 Cat
+
+s Animate Second 1 Linear               # Animate all properties  of both
+
